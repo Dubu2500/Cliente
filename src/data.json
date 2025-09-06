@@ -1,0 +1,18 @@
+{
+  "profile": {
+    "name": "Victoria Leticia Figueroa Rivera",
+    "role": "Frontend Developer",
+    "about": "Soy estudiante de desarrollo software apasionado por crear interfaces limpias y responsivas."
+  },
+  "contact": {
+    "email": "victoria.figueroa@iteso.mx"
+  },
+  "skills": ["HTML", "CSS", "TypeScript", "JavaScript", "Java"],
+  "projects": [
+    {
+      "name": "Tarea 2",
+      "url": "#",
+      "desc": "Mi primer CV."
+    }
+  ]
+}

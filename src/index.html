@@ -9,7 +9,38 @@
 <body>
     <h1>Mi CV en línea</h1>
     <p>Esta es mi página de CV personal.</p>
+      <header>
+    <h1 id="name"></h1>
+    <p id="role"></p>
+  </header>
+
+  <section>
+    <h2>Acerca de</h2>
+    <p id="about"></p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <ul id="skills"></ul>
+  </section>
+
+  <section>
+    <h2>Proyectos</h2>
+    <div id="projects"></div>
+  </section>
+
+  <section>
+    <h2>Contacto</h2>
+    <div id="form-errors" class="form-errors"></div>
+    <form id="contact-form" method="POST">
+      <input type="hidden" name="_subject" value="Nuevo mensaje desde el CV">
+      <label>Nombre <input name="name" required></label>
+      <label>Correo <input name="email" type="email" required></label>
+      <label>Mensaje <textarea name="message" required></textarea></label>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
     
-    <script src="scripts.js"></script>
+    <script src="scripts.js" type="module"></script>
 </body>
 </html>

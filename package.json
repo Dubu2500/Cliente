@@ -4,18 +4,19 @@
   "main": "script.ts",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc --watch & sass src/style.scss dist/style.css --watch",
-    "build": "tsc && sass src/style.scss dist/style.css && copy src\\index.html dist\\index.html"
+    "build": "tsc && sass src/style.scss dist/style.css && npm run copy:html && npm run copy:assets",
+    "copy:html": "copyfiles -u 1 src/*.html dist/",
+    "copy:assets": "copyfiles -u 1 src/**/*.{json,png,jpg,jpeg,svg,gif} dist/"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "sass": "^1.92.0",
+    "copyfiles": "^2.4.1",
+    "sass": "^1.92.1",
     "typescript": "^5.9.2"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dubu2500/AplicacionCV.git"
