@@ -2,7 +2,7 @@ async function init() {
   try {
     //pedimos el json del perfil
     const res = await fetch("info.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("No se pudo cargar data.json");
+    if (!res.ok) throw new Error("No se pudo cargar info.json");
     const data: any = await res.json();
     console.log("Datos completos:", data);
 
