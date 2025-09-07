@@ -1,40 +1,32 @@
-# Aplicación CV en línea
+# CV en línea
 
-
-Instalación
+Instalación y build (recomendado la primera vez)
 1) Instala dependencias: `npm install`
-2) Compila todo: `npm run build`
+2) Construye la salida: `npm run build`
 3) Abre `dist/index.html` en el navegador
 
-Desarrollo (watch)
-- `npm run dev`
-  - Compila TypeScript y Sass en modo watch
-  - Copia HTML y assets cuando ejecutes `npm run build` (o vuelve a correr si cambias archivos estáticos)
+Desarrollo 
+- Ejecuta `npm run build` una vez para copiar HTML y assets.
+- Luego `npm run dev` para ver cambios de TS y SCSS en tiempo real.
+- Visualiza siempre `dist/index.html`.
 
-Estructura
-- `src/` código fuente (HTML, SCSS parciales, TS, JSON)
-- `dist/` salida final (HTML, CSS, JS, JSON, imágenes)
-
-Cambiar datos del CV
-- Edita `src/data.json`
+Datos del CV
+- Archivo de datos: `src/info.json`
   - `profile.name`, `profile.role`, `profile.about`
-  - `skills[]`, `projects[]`
+  - `skills[]`, `languages[]`, `education[]`, `projects[]`
   - `contact.email`, `contact.phone`, `contact.location`, `contact.avatar`
-- Guarda y ejecuta `npm run build`; abre `dist/index.html`
+- Tras editarlo, ejecuta `npm run build` (o mantén `npm run dev` corriendo y vuelve a cargar la página, si ya copiaste HTML/assets con un build previo).
 
 Formulario de contacto
-- El email de destino se define en `src/data.json` en `contact.email`
-- El script asigna la acción del formulario a FormSubmit automáticamente:
-  - `https://formsubmit.co/<tu-email>`
+- El correo de destino se toma de `contact.email` en `src/info.json`.
+- El script configura el action automáticamente a: `https://formsubmit.co/<tu-email>`.
 
-Sass
-- Parciales en `src/styles/` (`_base.scss`, `_layout.scss`, `_components.scss`, `_variables.scss`, `_mixins.scss`)
-- Variables en `_variables.scss`
-- Media queries en `_base.scss` y `_layout.scss`
-- Mixins y funciones en `_mixins.scss` (`container`, `rem()`)
-- Uso de `@extend` en `_components.scss` para botones
+Estructura de estilos (SCSS)
+- Parciales en `src/styles/`:
+  - `_variables.scss`, `_mixins.scss`, `_base-cv.scss`, `_estructura.scss`, `_componentes-cv.scss`
+  - Entrada principal: `style.scss` (genera `dist/style.css`)
 
 Scripts npm
-- `npm run dev`: TS y Sass en watch
-- `npm run build`: transpila TS, compila Sass, copia HTML y assets a `dist/`
+- `npm run dev`: compila TypeScript y Sass en modo watch.
+- `npm run build`: transpila TS, compila Sass y copia HTML/JSON/imagenes a `dist/`.
 
