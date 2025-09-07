@@ -8,22 +8,22 @@ async function init() {
 
     //perfil
     const nameEl = document.getElementById("name");
-    if (nameEl) nameEl.textContent = String(data?.profile?.name ?? "");
+    if (nameEl) nameEl.textContent = String(data?.perfil?.nombre ?? "");
     const roleEl = document.getElementById("role");
-    if (roleEl) roleEl.textContent = String(data?.profile?.role ?? "");
+    if (roleEl) roleEl.textContent = String(data?.perfil?.rol ?? "");
     const aboutEl = document.getElementById("about");
-    if (aboutEl) aboutEl.textContent = String(data?.profile?.about ?? "");
+    if (aboutEl) aboutEl.textContent = String(data?.perfil?.acerca ?? "");
 
     //contacto
     const phoneEl = document.getElementById("phone");
-    if (phoneEl) phoneEl.textContent = String(data?.contact?.phone ?? "");
+    if (phoneEl) phoneEl.textContent = String(data?.contacto?.telefono ?? "");
     const emailEl = document.getElementById("email");
-    if (emailEl) emailEl.textContent = String(data?.contact?.email ?? "");
+    if (emailEl) emailEl.textContent = String(data?.contacto?.correo ?? "");
     const locationEl = document.getElementById("location");
-    if (locationEl) locationEl.textContent = String(data?.contact?.location ?? "");
+    if (locationEl) locationEl.textContent = String(data?.contacto?.ubicacion ?? "");
     const avatar = document.getElementById("avatar") as HTMLImageElement | null;
-    if (avatar && data?.contact?.avatar) {
-      avatar.src = String(data.contact.avatar);
+    if (avatar && data?.contacto?.avatar) {
+      avatar.src = String(data.contacto.avatar);
       avatar.alt = "Foto de perfil";
     }
 
@@ -31,7 +31,7 @@ async function init() {
     const skills = document.getElementById("skills") as HTMLUListElement | null;
     if (skills) {
       skills.innerHTML = "";
-      const arr = (data && data.skills) || [];
+      const arr = (data && data.habilidades) || [];
       for (let i = 0; i < arr.length; i++) {
         const li = document.createElement("li");
         li.textContent = String(arr[i] || "");
@@ -43,7 +43,7 @@ async function init() {
     const langs = document.getElementById("languages") as HTMLUListElement | null;
     if (langs) {
       langs.innerHTML = "";
-      const arr = (data && data.languages) || [];
+      const arr = (data && data.idiomas) || [];
       for (let i = 0; i < arr.length; i++) {
         const li = document.createElement("li");
         li.textContent = String(arr[i] || "");
@@ -55,10 +55,10 @@ async function init() {
     const eduBox = document.getElementById("education") as HTMLDivElement | null;
     if (eduBox) {
       let html = "";
-      const arr = (data && data.education) || [];
+      const arr = (data && data.educacion) || [];
       for (let i = 0; i < arr.length; i++) {
         const e = arr[i] || {};
-        html += '<article class="card"><h3>' + (e.title || "") + '</h3><p>' + (e.desc || "") + '</p></article>';
+        html += '<article class="card"><h3>' + (e.titulo || "") + '</h3><p>' + (e.descripcion || "") + '</p></article>';
       }
       eduBox.innerHTML = html;
     }
@@ -67,12 +67,12 @@ async function init() {
     const projBox = document.getElementById("projects") as HTMLDivElement | null;
     if (projBox) {
       let html = "";
-      const arr = (data && data.projects) || [];
+      const arr = (data && data.proyectos) || [];
       for (let i = 0; i < arr.length; i++) {
         const p = arr[i] || {};
         const url = p.url || "#";
-        const name = p.name || "Proyecto";
-        const desc = p.desc || "";
+        const name = p.nombre || "Proyecto";
+        const desc = p.descripcion || "";
         html += '<article class="card"><h3><a href="' + url + '" target="_blank" rel="noopener">' + name + '</a></h3><p>' + desc + '</p></article>';
       }
       projBox.innerHTML = html;
@@ -80,8 +80,8 @@ async function init() {
 
     //form
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
-    if (form && data?.contact?.email) {
-      form.action = "https://formsubmit.co/" + encodeURIComponent(data.contact.email);
+    if (form && data?.contacto?.correo) {
+      form.action = "https://formsubmit.co/" + encodeURIComponent(data.contacto.correo);
     }
 
     //validaciones

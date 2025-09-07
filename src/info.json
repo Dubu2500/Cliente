@@ -1,21 +1,22 @@
 {
-  "profile": { "name": "Victoria Leticia Figueroa Rivera", "role": "Estudiante de Software",
-    "about": "Soy estudiante de desarrollo software interesada Frontend, BS. Software chido"
+  "perfil": {
+    "nombre": "Victoria Leticia Figueroa Rivera",
+    "rol": "Estudiante de Software",
+    "acerca": "Soy estudiante de desarrollo de software interesada en Frontend. Me gusta construir interfaces limpias y accesibles."
   },
-  "contact": {
-    "email": "victori.perros@gmail.com",
-    "phone": "3329712447",
-    "location": "Guadalajara, México",
+  "contacto": {
+    "correo": "victori.perros@gmail.com",
+    "telefono": "3329712447",
+    "ubicacion": "Guadalajara, México",
     "avatar": "https://scontent.fgdl9-1.fna.fbcdn.net/v/t39.30808-6/456484913_2775459699279301_5289908741404277212_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEMfgxlCPTsvXe-q01tDO1-K6oevDsTyE8rqh68OxPIT3RXDNX_3Y2crCoAxavsK2q_UZsZskgKeWZ4Qja7smUj&_nc_ohc=r8iUwMeAKGYQ7kNvwF6QLzi&_nc_oc=Adneq02aQ8ybgCws30Np3jk4_93RWzHN4GMkTlWdqg_bMEF-ALuYoy202E1w6afE8lIHYhs5ON786gvC5-IyGndz&_nc_zt=23&_nc_ht=scontent.fgdl9-1.fna&_nc_gid=_8poV85E__KZYd22qpOkWQ&oh=00_AfZDskWTaKBf5s-SDFLqCYA_XjrCXTimxHf5yCyUEe2vPQ&oe=68C234F7"
   },
-  "skills": ["HTML","CSS/Sass","TypeScript","JavaScript","Java"],
-  "languages": ["Español","Inglés avanzado"],
-  "education": [
-    {"title":"Universidad: ITESO","desc":"2023–Presente"},
-    {"title":"Preparatoria: 5 UDG","desc":"2020–2023"}
+  "habilidades": ["HTML", "CSS/Sass", "TypeScript", "JavaScript", "Java"],
+  "idiomas": ["Español", "Inglés (avanzado)"],
+  "educacion": [
+    { "titulo": "Universidad: ITESO", "descripcion": "2023–Presente" },
+    { "titulo": "Preparatoria: 5 UDG", "descripcion": "2020–2023" }
   ],
-  "projects": [
-
-    { "name": "Snake", "url": "https://github.com/Dubu2500/darkness", "desc": "Uso de lenguaje C para la creación del juego Snake" }
+  "proyectos": [
+    { "nombre": "Snake", "url": "https://github.com/Dubu2500/darkness", "descripcion": "Uso de C para la creación del juego Snake." }
   ]
 }
