@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsc --watch --sourceMap true --declaration true --declarationMap true --inlineSources true & sass src/styles/style.scss dist/style.css --watch",
-    "build": "tsc --sourceMap false --declaration false --declarationMap false && sass src/styles/style.scss dist/style.css --no-source-map && npm run copy:html && npm run copy:assets",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true});require('fs').mkdirSync('dist',{recursive:true})\"",
+    "build": "npm run clean && tsc --sourceMap false --declaration false --declarationMap false && sass src/styles/style.scss dist/style.css --no-source-map && npm run copy:html && npm run copy:assets",
     "preview": "npx http-server dist -p 3000 -c-1",
     "copy:html": "copyfiles -u 1 src/*.html dist/",
     "copy:assets": "copyfiles -u 1 src/**/*.{json,png,jpg,jpeg,svg,gif} dist/",
