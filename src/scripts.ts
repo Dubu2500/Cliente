@@ -1,82 +1,117 @@
-
-function $(sel: string): any {
-  return document.querySelector(sel);
-}
-
-async function cargarDatos() {
+async function init() {
   try {
-    
-    const res = await fetch("data.json", { cache: "no-store" });
+    //pedimos el json del perfil
+    const res = await fetch("info.json", { cache: "no-store" });
     if (!res.ok) throw new Error("No se pudo cargar data.json");
     const data: any = await res.json();
+    console.log("Datos completos:", data);
 
-    //mi perfil gg papa
-    $("#name").textContent = data.profile?.name || "";
-    $("#role").textContent = data.profile?.role || "";
-    $("#about").textContent = data.profile?.about || "";
+    //perfil
+    const nameEl = document.getElementById("name");
+    if (nameEl) nameEl.textContent = String(data?.profile?.name ?? "");
+    const roleEl = document.getElementById("role");
+    if (roleEl) roleEl.textContent = String(data?.profile?.role ?? "");
+    const aboutEl = document.getElementById("about");
+    if (aboutEl) aboutEl.textContent = String(data?.profile?.about ?? "");
 
-    //skills
-    const skillsEl = $("#skills");
-    if (Array.isArray(data.skills)) {
-      skillsEl.innerHTML = data.skills.map((s: string) => `<li>${s}</li>`).join("");
+    //contacto
+    const phoneEl = document.getElementById("phone");
+    if (phoneEl) phoneEl.textContent = String(data?.contact?.phone ?? "");
+    const emailEl = document.getElementById("email");
+    if (emailEl) emailEl.textContent = String(data?.contact?.email ?? "");
+    const locationEl = document.getElementById("location");
+    if (locationEl) locationEl.textContent = String(data?.contact?.location ?? "");
+    const avatar = document.getElementById("avatar") as HTMLImageElement | null;
+    if (avatar && data?.contact?.avatar) {
+      avatar.src = String(data.contact.avatar);
+      avatar.alt = "Foto de perfil";
     }
 
-    // 4) Proyectos
-    const projectsEl = $("#projects");
-    if (Array.isArray(data.projects)) {
-      projectsEl.innerHTML = data.projects
-        .map((p: any) => `
-          <article class="card">
-            <h3><a href="${p.url || "#"}" target="_blank" rel="noopener">${p.name || "Proyecto"}</a></h3>
-            <p>${p.desc || ""}</p>
-          </article>
-        `)
-        .join("");
+    //mis skills, languages
+    const skills = document.getElementById("skills") as HTMLUListElement | null;
+    if (skills) {
+      skills.innerHTML = "";
+      const arr = (data && data.skills) || [];
+      for (let i = 0; i < arr.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = String(arr[i] || "");
+        skills.appendChild(li);
+      }
     }
 
-    
-    const form = $("#contact-form") as HTMLFormElement;
-    if (form && data.contact?.email) {
-      form.action = `https://formsubmit.co/${encodeURIComponent(data.contact.email)}`;
+    //idiomas
+    const langs = document.getElementById("languages") as HTMLUListElement | null;
+    if (langs) {
+      langs.innerHTML = "";
+      const arr = (data && data.languages) || [];
+      for (let i = 0; i < arr.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = String(arr[i] || "");
+        langs.appendChild(li);
+      }
     }
 
-  
-    configurarValidacion();
+    //educacion
+    const eduBox = document.getElementById("education") as HTMLDivElement | null;
+    if (eduBox) {
+      let html = "";
+      const arr = (data && data.education) || [];
+      for (let i = 0; i < arr.length; i++) {
+        const e = arr[i] || {};
+        html += '<article class="card"><h3>' + (e.title || "") + '</h3><p>' + (e.desc || "") + '</p></article>';
+      }
+      eduBox.innerHTML = html;
+    }
 
+    //proyectos
+    const projBox = document.getElementById("projects") as HTMLDivElement | null;
+    if (projBox) {
+      let html = "";
+      const arr = (data && data.projects) || [];
+      for (let i = 0; i < arr.length; i++) {
+        const p = arr[i] || {};
+        const url = p.url || "#";
+        const name = p.name || "Proyecto";
+        const desc = p.desc || "";
+        html += '<article class="card"><h3><a href="' + url + '" target="_blank" rel="noopener">' + name + '</a></h3><p>' + desc + '</p></article>';
+      }
+      projBox.innerHTML = html;
+    }
+
+    //form
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    if (form && data?.contact?.email) {
+      form.action = "https://formsubmit.co/" + encodeURIComponent(data.contact.email);
+    }
+
+    //validaciones
+    const errorBox = document.getElementById("form-errors") as HTMLElement | null;
+    if (form && errorBox) {
+      form.addEventListener("submit", function (e: Event) {
+        const name = (form.querySelector('[name="name"]') as HTMLInputElement | null)?.value.trim() || "";
+        const email = (form.querySelector('[name="email"]') as HTMLInputElement | null)?.value.trim() || "";
+        const message = (form.querySelector('[name="message"]') as HTMLTextAreaElement | null)?.value.trim() || "";
+        const errors: string[] = [];
+        //nombre obligtorio
+        if (!name) errors.push("El nombre es obligatorio.");
+        //correo validar
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("El correo no es válido.");
+        if (message.length < 10) errors.push("El mensaje debe tener al menos 10 caracteres.");
+        //limpiamos el contnedor de errores
+        errorBox.innerHTML = "";
+        if (errors.length > 0) {
+          e.preventDefault();
+          let out = "";
+          for (let i = 0; i < errors.length; i++) out += '<p>• ' + errors[i] + '</p>';
+          errorBox.innerHTML = out;
+        }
+      });
+    }
   } catch (err) {
-    console.error("No se pudo cargar el JSON:", err);
-    $("#app")?.insertAdjacentHTML("beforeend", `<p style="color:red">Error cargando datos.</p>`);
+    //si falla mostramos mesanje de error en la pagina
+    const app = document.getElementById("app") as HTMLElement | null;
+    if (app) app.insertAdjacentHTML("beforeend", '<p style="color:red">Error cargando datos.</p>');
   }
 }
 
-function configurarValidacion() {
-  const form = $("#contact-form") as HTMLFormElement;
-  if (!form) return;
-
-  const errorBox = $("#form-errors");
-
-  form.addEventListener("submit", (e: SubmitEvent) => {
-    if (!errorBox) return;
-
-    const nombre = (form.querySelector('[name="name"]') as HTMLInputElement)?.value.trim();
-    const correo = (form.querySelector('[name="email"]') as HTMLInputElement)?.value.trim();
-    const mensaje = (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value.trim();
-
-    const errores: string[] = [];
-
-   
-    if (!nombre) errores.push("El nombre es obligatorio.");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) errores.push("El correo no es válido.");
-    if (!mensaje || mensaje.length < 10) errores.push("El mensaje debe tener al menos 10 caracteres.");
-
-    
-    errorBox.innerHTML = "";
-    if (errores.length > 0) {
-      e.preventDefault();
-      errorBox.innerHTML = errores.map(t => `<p>• ${t}</p>`).join("");
-    }
-  });
-}
-
-
-cargarDatos();
+init();

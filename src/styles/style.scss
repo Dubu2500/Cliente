@@ -1,0 +1,14 @@
+@use "variables";
+@use "mixins";
+@use "base-cv";
+@use "estructura";
+@use "componentes-cv";
+
+//encabezado
+h1 {
+  background-color: #f0f0f0;
+  color: #4048b2;
+  font-family: Consolas, "Courier New", monospace;
+  margin: 0;
+  padding: 20px;
+}

@@ -1,0 +1,13 @@
+@use "sass:math";
+
+
+//convertir pixeles a rems (mas facil de escalar)
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+//contenedor centradito 
+@mixin container {
+  width: min(1100px, 100% - 2rem);
+  margin-inline: auto;
+}

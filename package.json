@@ -4,10 +4,12 @@
   "main": "script.ts",
   "type": "module",
   "scripts": {
-    "dev": "tsc --watch & sass src/style.scss dist/style.css --watch",
-    "build": "tsc && sass src/style.scss dist/style.css && npm run copy:html && npm run copy:assets",
+    "dev": "tsc --watch & sass src/styles/style.scss dist/style.css --watch",
+    "build": "tsc && sass src/styles/style.scss dist/style.css && npm run copy:html && npm run copy:assets",
     "copy:html": "copyfiles -u 1 src/*.html dist/",
-    "copy:assets": "copyfiles -u 1 src/**/*.{json,png,jpg,jpeg,svg,gif} dist/"
+    "copy:assets": "copyfiles -u 1 src/**/*.{json,png,jpg,jpeg,svg,gif} dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "author": "",
   "license": "ISC",
