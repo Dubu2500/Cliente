@@ -1,6 +1,7 @@
 # CV en línea
 
 Instalación y build 
+1) Abre una nueva carpeta para poder clonar el repositorio,y entra en la carpeta del repositorio AplicacionCV
 1) Instala dependencias: `npm install`
 2) Construye la salida: `npm run build`
 3) Abre `dist/index.html` en el navegador
