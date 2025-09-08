@@ -27,6 +27,25 @@ async function init() {
       avatar.alt = "Foto de perfil";
     }
 
+    const contactList = document.querySelector(".contact") as HTMLUListElement | null;
+    if (contactList) {
+      // GitHub
+      const gh = String(data?.contacto?.github ?? "");
+      const ghLi = document.createElement("li");
+      ghLi.innerHTML = '<span></span><a id="github" target="_blank" rel="noopener">GitHub</a>';
+      const ghA = ghLi.querySelector("a") as HTMLAnchorElement | null;
+      if (ghA) ghA.href = gh || '#';
+      contactList.appendChild(ghLi);
+
+      // LinkedIn
+      const liUrl = String(data?.contacto?.linkedin ?? "");
+      const lnLi = document.createElement("li");
+      lnLi.innerHTML = '<span></span><a id="linkedin" target="_blank" rel="noopener">LinkedIn</a>';
+      const lnA = lnLi.querySelector("a") as HTMLAnchorElement | null;
+      if (lnA) lnA.href = liUrl || '#';
+      contactList.appendChild(lnLi);
+    }
+
     //mis skills, languages
     const skills = document.getElementById("skills") as HTMLUListElement | null;
     if (skills) {
@@ -73,7 +92,7 @@ async function init() {
         const url = p.url || "#";
         const name = p.nombre || "Proyecto";
         const desc = p.descripcion || "";
-        // Versión simple: arma el HTML en una sola cadena
+      //tarjeta de proyecto 
         html += `<article class="card project-card">
   <div class="project-thumb">${p.imagen ? `<img src="${p.imagen}" alt="Miniatura">` : '🐍'}</div>
   <div class="project-body">

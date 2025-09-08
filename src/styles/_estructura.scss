@@ -83,6 +83,8 @@
 }
 .contact li { display: grid; grid-template-columns: 1.2rem minmax(0, 1fr); gap: .5rem; overflow-wrap: anywhere; }
 
+.contact li > span:first-child { display: none; }
+
 
 //parte responsiva
 @media (max-width: 860px) {
