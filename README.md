@@ -1,6 +1,6 @@
 # CV en línea
 
-Instalación y build (recomendado la primera vez)
+Instalación y build 
 1) Instala dependencias: `npm install`
 2) Construye la salida: `npm run build`
 3) Abre `dist/index.html` en el navegador
@@ -15,7 +15,6 @@ Datos del CV
   - `profile.name`, `profile.role`, `profile.about`
   - `skills[]`, `languages[]`, `education[]`, `projects[]`
   - `contact.email`, `contact.phone`, `contact.location`, `contact.avatar`
-- Tras editarlo, ejecuta `npm run build` (o mantén `npm run dev` corriendo y vuelve a cargar la página, si ya copiaste HTML/assets con un build previo).
 
 Formulario de contacto
 - El correo de destino se toma de `contact.email` en `src/info.json`.
@@ -27,6 +26,6 @@ Estructura de estilos (SCSS)
   - Entrada principal: `style.scss` (genera `dist/style.css`)
 
 Scripts npm
-- `npm run dev`: compila TypeScript y Sass en modo watch.
-- `npm run build`: transpila TS, compila Sass y copia HTML/JSON/imagenes a `dist/`.
+- `npm run dev`: compila TypeScript y Sass.
+- `npm run build`: usa el TS, compila Sass y copia HTML/JSON/imagenes a `dist/`.
 
