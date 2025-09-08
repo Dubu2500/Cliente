@@ -60,6 +60,9 @@
 
 .block { background: #fff; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
 
+
+.block--contact { grid-column: 1 / -1; }
+
 .block-title { //titulos de las secciones
   font-size: 1rem; //tamaño de letra
   text-transform: uppercase;

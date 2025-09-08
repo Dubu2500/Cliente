@@ -1,7 +1,7 @@
 {
   "perfil": {
     "nombre": "Victoria Leticia Figueroa Rivera",
-    "rol": "Estudiante de Software",
+    "rol": "Estudiante de Software                             GDL.Jalisco",
     "acerca": "Soy estudiante de desarrollo de software interesada en Frontend. Me gusta construir interfaces limpias y accesibles."
   },
   "contacto": {
@@ -13,7 +13,7 @@
   "habilidades": ["HTML", "CSS/Sass", "TypeScript", "JavaScript", "Java"],
   "idiomas": ["Español", "Inglés (avanzado)"],
   "educacion": [
-    { "titulo": "Universidad: ITESO", "descripcion": "2023–Presente" },
+    { "titulo": "Ing. Desarrollo de Software-ITESO", "descripcion": "2023–Presente" },
     { "titulo": "Preparatoria: 5 UDG", "descripcion": "2020–2023" }
   ],
   "proyectos": [

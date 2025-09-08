@@ -73,7 +73,14 @@ async function init() {
         const url = p.url || "#";
         const name = p.nombre || "Proyecto";
         const desc = p.descripcion || "";
-        html += '<article class="card"><h3><a href="' + url + '" target="_blank" rel="noopener">' + name + '</a></h3><p>' + desc + '</p></article>';
+        // Versión simple: arma el HTML en una sola cadena
+        html += `<article class="card project-card">
+  <div class="project-thumb">${p.imagen ? `<img src="${p.imagen}" alt="Miniatura">` : '🐍'}</div>
+  <div class="project-body">
+    <h3><a href="${url}" target="_blank" rel="noopener">${name}</a></h3>
+    <p>${desc}</p>
+  </div>
+</article>`;
       }
       projBox.innerHTML = html;
     }
