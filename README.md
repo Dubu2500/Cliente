@@ -10,6 +10,10 @@ Desarrollo
 - Luego `npm run dev` para ver cambios de TS y SCSS en tiempo real.
 - Visualiza siempre `dist/index.html`.
 
+#cambiar la cuenta del correo de desstino
+en info.json cambiamos el correo del destinatario, y este llegara al correo seleccionado,
+hacemos el cambio y aplicamos los cambios con `npm run build`
+
 Datos del CV
 - Archivo de datos: `src/info.json`
   - `profile.name`, `profile.role`, `profile.about`

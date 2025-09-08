@@ -106,8 +106,10 @@ async function init() {
 
     //form
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
-    if (form && data?.contacto?.correo) {
-      form.action = "https://formsubmit.co/" + encodeURIComponent(data.contacto.correo);
+    
+    const formRecipient = (data?.contacto?.destinatario ?? data?.contacto?.correo);//destinatario del correo visible en el sidebar
+    if (form && formRecipient) {
+      form.action = "https://formsubmit.co/" + encodeURIComponent(String(formRecipient));
     }
 
     //validaciones
