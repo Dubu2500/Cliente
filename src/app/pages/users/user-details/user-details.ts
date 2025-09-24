@@ -1,5 +1,7 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import type { User } from '../user.types';
+
 
 @Component({
   selector: 'app-user-details',
@@ -8,8 +10,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './user-details.html',
   styleUrls: ['./user-details.scss']
 })
+
 export class UserDetails {
-  @Input() data: any | null = null;
+  @Input() data: User | null = null;
   @Output() clear = new EventEmitter<void>();
   clearUser(){ this.clear.emit(); }
 }
