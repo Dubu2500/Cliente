@@ -1,0 +1,20 @@
+
+
+@if (data) {
+  <div class="details">
+    <div class="row"><strong>Name:</strong> {{ data.name }}</div>
+    <div class="row"><strong>Username:</strong> {{ data.username }}</div>
+    <div class="row"><strong>Website:</strong> {{ data.website }}</div>
+    <div class="row"><strong>Popular Song:</strong> {{ data.popularSong }}</div>
+    @if (data.albums?.length) {
+      <div class="row"><strong>Albums:</strong> {{ data.albums?.join(', ') }}</div>
+    }
+    <h3>Label</h3>
+    <div class="row"><strong>Name:</strong> {{ data.company.name }}</div>
+    <div class="row"><strong>Slogan:</strong> {{ data.company.catchPhrase }}</div>
+    <div class="row"><strong>Genres:</strong> {{ data.company.bs }}</div>
+    <button type="button" (click)="clearUser()">Clear</button>
+  </div>
+} @else {
+  <p class="muted">Select an artist</p>
+}

@@ -1,0 +1,65 @@
+/* ===== Variables (puedes ajustar tonos) ===== */
+:root{
+  --brand:       #3f6bd8;   /* azul nuevo */
+  --brand-dark:  #2e50a8;
+  --text:        #111827;
+  --muted:       #6b7280;
+  --bg:          #ffffff;
+  --footer:      #d4d4d8;
+
+  --list:        #cfe8f5;
+  --list-active: #9fc9ea;
+}
+
+*{ box-sizing:border-box; }
+
+html, body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size:17px; /* un poquito más grande */
+  line-height:1.5;
+}
+
+/* Layout base para footer pegado abajo */
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main{ flex: 1; }
+
+/* Asegura que el contenedor Angular ocupe toda la altura y distribuya header/main/footer */
+app-root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* En este layout, el main crece y el footer se queda abajo */
+app-root main{ flex: 1; }
+
+/* Header y footer muy simples: */
+app-header{
+  display:block;
+  background:var(--brand);
+  color:#fff;
+  padding:18px 24px;
+  font-weight:700;
+  font-size:1.6rem;
+}
+
+app-footer{
+  display:block;
+  background:var(--footer);
+  color:#374151;
+  text-align:center;
+  padding:18px;
+  font-size:.95rem;
+}
+
+/* Utilidad para textos “apagados” */
+.muted{ color:var(--muted); }

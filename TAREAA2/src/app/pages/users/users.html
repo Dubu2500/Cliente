@@ -1,0 +1,20 @@
+<h1>Users</h1>
+
+@if (!titles.length) {  
+  <p class="muted">No users</p>
+} @else {
+  <div class="layout">
+    <app-user-list
+      class="left"
+      [items]="titles"
+      [selected]="selected"
+      (select)="handleUserSelected($event)">
+    </app-user-list>
+
+    <app-user-details
+      class="right"
+      [data]="selected ? details[selected] : null"
+      (clear)="clearSelected()">
+    </app-user-details>
+  </div>
+}

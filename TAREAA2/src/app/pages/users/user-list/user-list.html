@@ -1,0 +1,11 @@
+<ul class="list">
+  @for (t of items; track t) {
+    <li
+      (click)="selectItem(t)"
+      [class.active]="t === selected">
+      {{ t }}
+    </li>
+  } @empty {
+    <li class="muted">No users</li>
+  }
+</ul>
