@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi CV en línea</title>
+  
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%232563eb'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-size='28' fill='white' font-family='Arial, sans-serif'%3ECV%3C/text%3E%3C/svg%3E" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body id="app">
+
+  <div class="resume">
+    <!--sidebar -->
+    <aside class="sidebar">
+      <div class="avatar">
+        
+        <img id="avatar" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Foto de perfil" />
+      </div>
+
+      <h3 class="sidebar-title">Perfil</h3>
+      <p id="about"></p>
+
+      <h3 class="sidebar-title">Contáctame</h3>
+      <ul class="contact">
+        <li><span>📞</span><span id="phone">—</span></li>
+        <li><span>✉️</span><span id="email">—</span></li>
+        <li><span>📍</span><span id="location">—</span></li>
+      </ul>
+    </aside>
+
+    
+    <main class="content">
+      <header class="identity">
+        <h1 id="name"></h1>
+        <p id="role"></p>
+      </header>
+
+      <section class="block">
+        <h2 class="block-title">Educación</h2>
+        <div id="education"></div>
+      </section>
+
+      <section class="block">
+        <h2 class="block-title">Idiomas</h2>
+        <ul id="languages" class="tag-list"></ul>
+      </section>
+
+      <section class="block">
+        <h2 class="block-title">SKILLS</h2>
+        <ul id="skills" class="tag-list"></ul>
+      </section>
+
+      
+
+      <section class="block">
+        <h2 class="block-title">Proyectos</h2>
+        <div id="projects" class="grid"></div>
+      </section>
+
+      <section class="block block--contact"> 
+        <h2 class="block-title">Contacto</h2>
+        <div id="form-errors" class="form-errors"></div>
+        <form id="contact-form" method="POST">
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde el CV" />
+          <label>Nombre
+            <input name="name" required />
+          </label>
+          <label>Correo
+            <input name="email" type="email" required />
+          </label>
+          <label>Mensaje
+            <textarea name="message" required></textarea>
+          </label>
+          <button type="submit" class="button">Enviar</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  
+  <script src="scripts.js" type="module"></script>
+</body>
+</html>

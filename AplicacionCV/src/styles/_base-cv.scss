@@ -1,0 +1,31 @@
+@use "variables";
+//aqui aplican los estilos base que se van a usar
+
+html { box-sizing: border-box; } //esto hace que el padding y border se incluyan en el ancho y alto total de un elemento
+*, //selector universal
+*::before,         
+*::after { box-sizing: inherit; } 
+
+
+//cuerppo y colores generales
+body {
+  font-family: variables.$font-base;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: variables.$bg-body;
+  color: variables.$text-body;
+}
+
+@media (min-width: 768px) {
+  body { font-size: 18px; }
+}
+
+//imagenes y enlaces
+img { max-width: 100%; display: block; } //para que las imagenes no se salgan del contenedor
+a { color: variables.$primary-color; text-decoration: none; } //subrado del link
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { margin: 0 0 .5rem 0; line-height: 1.2; } //margenes inferiores
+p { margin: 0 0 1rem 0; }

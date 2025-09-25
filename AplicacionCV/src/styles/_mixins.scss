@@ -1,0 +1,11 @@
+@use "sass:math";
+//aqui van mixins y funciones 
+//convertir pixeles a rems  funcion de sass 
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+@mixin container { //contenedor centradito 
+  width: min(1100px, 100% - 2rem);
+  margin-inline: auto;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "cvv",
+  "version": "1.0.0",
+  "main": "script.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch & sass src/styles/style.scss dist/style.css --watch",
+    "build": "tsc && sass src/styles/style.scss dist/style.css && npm run copy:html && npm run copy:assets",
+    "copy:html": "copyfiles -u 1 src/*.html dist/",
+    "copy:assets": "copyfiles -u 1 src/**/*.{json,png,jpg,jpeg,svg,gif} dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "sass": "^1.92.1",
+    "typescript": "^5.9.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dubu2500/AplicacionCV.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Dubu2500/AplicacionCV/issues"
+  },
+  "homepage": "https://github.com/Dubu2500/AplicacionCV#readme"
+}
