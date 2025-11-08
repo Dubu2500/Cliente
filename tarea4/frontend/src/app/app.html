@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Mini Chat</h1>
+
+  <div class="card" *ngIf="!connected()">
+    <label for="name">Nommbre Usuario:</label>
+    <div class="row" style="margin-top: .5rem;">
+      <input id="name" name="name" [(ngModel)]="tempName" placeholder="Ingresa tu nombre" />
+      <button (click)="connect()">Conectar</button>
+    </div>
+    <p style="margin-top:.5rem;opacity:.8">Se enviará un evento <code>user_connected</code></p>
+  </div>
+
+  <div *ngIf="connected()">
+    <p>Conectado como <strong>{{ username() }}</strong></p>
+
+    <div class="messages" aria-label="Mensajes">
+      <div *ngFor="let mensaje of messages()" class="message">
+        <span class="user">{{ mensaje.usuario }}:</span>
+        <span class="text">{{ mensaje.contenido }}</span>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: .5rem;">
+      <input [(ngModel)]="currentMessage" placeholder="Escribe un mensaje y presiona Enter" (keyup.enter)="send()" />
+      <button (click)="send()">Enviar</button>
+    </div>
+  </div>
+</div>
+
