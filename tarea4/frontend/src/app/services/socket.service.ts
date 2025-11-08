@@ -9,6 +9,7 @@ export class SocketService {
   private socket?: Socket;
   private messageSubject = new Subject<ChatMessage>();
   private userConnectedSubject = new Subject<string>();
+  private userDisconnectedSubject = new Subject<string>();
 
   connect(username: string, url = 'http://localhost:3000'): void {
     if (this.socket?.connected) return;
@@ -29,6 +30,10 @@ export class SocketService {
     this.socket.on('user_connected', (name: string) => {
       this.userConnectedSubject.next(name);
     });
+
+    this.socket.on('user_disconnected', (name: string) => {
+      this.userDisconnectedSubject.next(name);
+    });
   }
 
   disconnect(): void {
@@ -48,5 +53,8 @@ export class SocketService {
   onUserConnected(): Observable<string> {
     return this.userConnectedSubject.asObservable();
   }
-}
 
+  onUserDisconnected(): Observable<string> {
+    return this.userDisconnectedSubject.asObservable();
+  }
+}

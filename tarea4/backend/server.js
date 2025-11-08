@@ -15,6 +15,7 @@ io.on('connection', (socket) => {
   console.log('Nuevo cliente conectado:', socket.id);
 
   socket.on('user_connected', (username) => {
+    socket.data.username = username;
     socket.broadcast.emit('user_connected', username);
   });
 
@@ -24,6 +25,10 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('Cliente desconectado:', socket.id);
+    const name = socket.data?.username;
+    if (name) {
+      socket.broadcast.emit('user_disconnected', name);
+    }
   });
 });
 
