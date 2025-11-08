@@ -1,11 +1,27 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 import { SocketService } from './services/socket.service';
 
 @Component({
   selector: 'app-root',
-  imports: [NgIf, NgFor, FormsModule],
+  imports: [
+    NgIf,
+    NgFor,
+    FormsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatListModule
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -27,6 +43,13 @@ export class App implements OnInit {
       this.messages.set([
         ...this.messages(),
         { usuario: 'Sistema', contenido: `${name} se ha conectado` }
+      ]);
+    });
+
+    this.socket.onUserDisconnected().subscribe((name) => {
+      this.messages.set([
+        ...this.messages(),
+        { usuario: 'Sistema', contenido: `${name} se ha desconectado` }
       ]);
     });
   }

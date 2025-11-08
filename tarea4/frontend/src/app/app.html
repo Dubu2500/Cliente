@@ -1,29 +1,37 @@
-<div class="container">
-  <h1>Mini Chat</h1>
+<mat-toolbar color="primary">Mini Chat</mat-toolbar>
 
-  <div class="card" *ngIf="!connected()">
-    <label for="name">Nommbre Usuario:</label>
-    <div class="row" style="margin-top: .5rem;">
-      <input id="name" name="name" [(ngModel)]="tempName" placeholder="Ingresa tu nombre" />
-      <button (click)="connect()">Conectar</button>
-    </div>
-    <p style="margin-top:.5rem;opacity:.8">Se enviará un evento <code>user_connected</code></p>
-  </div>
+<div class="container">
+
+  <mat-card *ngIf="!connected()">
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre de usuario:</mat-label>
+        <input matInput [(ngModel)]="tempName" (keyup.enter)="connect()" placeholder="Ingresa tu nombre" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="connect()">Conectar</button>
+      <p class="hint">Se enviará un evento <code>user_connected</code></p>
+    </mat-card-content>
+  </mat-card>
 
   <div *ngIf="connected()">
-    <p>Conectado como <strong>{{ username() }}</strong></p>
-
-    <div class="messages" aria-label="Mensajes">
-      <div *ngFor="let mensaje of messages()" class="message">
-        <span class="user">{{ mensaje.usuario }}:</span>
-        <span class="text">{{ mensaje.contenido }}</span>
-      </div>
-    </div>
-
-    <div class="row" style="margin-top: .5rem;">
-      <input [(ngModel)]="currentMessage" placeholder="Escribe un mensaje y presiona Enter" (keyup.enter)="send()" />
-      <button (click)="send()">Enviar</button>
-    </div>
+    <mat-card>
+      <mat-card-title>Conectado como {{ username() }}</mat-card-title>
+      <mat-card-content>
+        <mat-list class="messages">
+          <mat-list-item *ngFor="let mensaje of messages()">
+            <span class="user">{{ mensaje.usuario }}:</span>
+            <span class="text">{{ mensaje.contenido }}</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions class="actions-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Escribe un mensaje</mat-label>
+          <input matInput [(ngModel)]="currentMessage" (keyup.enter)="send()" />
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="send()">Enviar</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>
 
